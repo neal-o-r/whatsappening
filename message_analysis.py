@@ -162,5 +162,5 @@ if __name__ == '__main__':
 #	data_panel2 = classify_messages(d2)
 
 #       right = 100*sum(data_panel.sentiment*data_panel2.sentiment >= 0) / float(len(data_panel))
-#        print 'The Naive Bayes and Vader agree on %.2f%% of classifications' %right
+#        print 'The Naive Bayes and Vader agree on the polarity of %.2f%% of classifications' %right
 
