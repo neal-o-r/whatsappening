@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 import seaborn as sns; sns.set()
-
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 def open_file(filename):
 
@@ -116,6 +116,22 @@ def classify_messages(df):
 	df['sentiment'] = sentiment # put sentiments into the data frame	
 	return df
 
+
+def vader_sentiment(df):
+
+        sith = SentimentIntensityAnalyzer()
+        
+        sentiment = []
+        for sentence in df.Message:
+                sent = sith.polarity_scores(sentence)
+                sent_total = sent['pos'] - sent['neg']
+
+                sentiment.append(sent_total)
+  
+        df['sentiment'] = sentiment
+        return df
+
+
 def plot_sentiment(df):
 	# plot the sentiments
 	fig = plt.figure()
@@ -135,11 +151,12 @@ if __name__ == '__main__':
 
 	content = open_file(filename)
 
-	processed_df = process(content[::20])
+	processed_df = process(content)
 	
 	make_plots(processed_df)
+        data_panel = vader_sentiment(processed_df)
 
-	data_panel = classify_messages(processed_df)
+#	data_panel = classify_messages(processed_df)
 
 	plot_sentiment(data_panel)
 
