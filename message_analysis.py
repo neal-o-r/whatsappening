@@ -154,10 +154,13 @@ if __name__ == '__main__':
 	processed_df = process(content)
 	
 	make_plots(processed_df)
+        
+#        d2 = processed_df.copy()
+
         data_panel = vader_sentiment(processed_df)
 
-#	data_panel = classify_messages(processed_df)
+#	data_panel2 = classify_messages(d2)
 
-	plot_sentiment(data_panel)
-
+#       right = 100*sum(data_panel.sentiment*data_panel2.sentiment >= 0) / float(len(data_panel))
+#        print 'The Naive Bayes and Vader agree on %.2f%% of classifications' %right
 
