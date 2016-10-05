@@ -124,9 +124,9 @@ def vader_sentiment(df):
         sentiment = []
         for sentence in df.Message:
                 sent = sith.polarity_scores(sentence)
-                sent_total = sent['pos'] - sent['neg']
+                #sent_total = sent['pos'] - sent['neg']
 
-                sentiment.append(sent_total)
+                sentiment.append(sent['compound'])
   
         df['sentiment'] = sentiment
         return df
@@ -159,6 +159,7 @@ if __name__ == '__main__':
 
         data_panel = vader_sentiment(processed_df)
 
+	plot_sentiment(data_panel)
 #	data_panel2 = classify_messages(d2)
 
 #       right = 100*sum(data_panel.sentiment*data_panel2.sentiment >= 0) / float(len(data_panel))
